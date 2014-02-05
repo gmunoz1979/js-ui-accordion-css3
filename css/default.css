@@ -1,0 +1,85 @@
+.panel {
+    /*background-color: #292929;*/
+    background: url("../images/fbox.png") repeat scroll -83px -9px rgba(0, 0, 0, 0);
+    position: relative;
+    color: #FFFFFF;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+}
+
+.accordion .panel-container {
+    transition: opacity 0.5s, height 0.5s;
+}
+
+.header {
+    position: relative;
+    cursor: pointer;
+    height: 30px;
+}
+
+.header .icon-header {
+    background: url("../images/box.png") no-repeat scroll -83px -9px rgba(0, 0, 0, 0);
+    position: absolute;
+    height: 30px;
+    left: 0;
+    top: 0;
+    width: 4px;
+}
+
+.header span {
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+hr.separator-horizontal {
+    background: url("../images/separador-horizontal.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    height: 2px;
+    margin: 0 !important;
+    padding: 0;
+    width: 100%;
+}
+
+.panel .header .icon-accordion {
+    background-image: url("../images/box.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 24px;
+}
+
+.panel.expanded+.panel:not(.expanded) .header .icon-accordion {
+    background-position: -24px 0;
+}
+
+.panel.expanded+.panel:not(.expanded) .header:hover .icon-accordion {
+    background-position: -24px -24px;
+}
+
+.panel .header:hover .icon-accordion {
+    background-position: 0 -24px;
+}
+
+.panel.expanded .header:hover .icon-accordion {
+    background-position: -48px -24px;
+}
+
+.panel.expanded .header .icon-accordion {
+    background-position: -48px 0;
+}
+
+.panel .panel-container {
+    background-color: #FFF;
+}

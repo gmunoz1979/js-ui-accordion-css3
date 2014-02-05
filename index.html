@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+      <title>Accordion CSS3</title>
+
+      <style type="text/css">
+        #container {
+          border: 1px solid #000;
+          width: 200px;
+          height: 400px;
+        }
+      </style>
+
+      <link rel="stylesheet" href="css/default.css">
+
+      <script type="text/javascript" src="src/core.js"></script>
+      <script type="text/javascript" src="src/Class.js"></script>
+      <script type="text/javascript" src="src/Accordion.js"></script>
+
+      <script>
+        window.onload = function() {
+          var o = new Accordion(
+            {
+              renderTo: document.getElementById('container'),
+              autoRender: true,
+              panels: [
+                {
+                  name:  'panel_1',
+                  title: 'Panel 1'
+                },
+                {
+                  name:  'panel_2',
+                  title: 'Panel 2'
+                },
+                {
+                  name:  'panel_3',
+                  title: 'Panel 3'
+                },
+                {
+                  name:  'panel_4',
+                  title: 'Panel 4'
+                },
+                {
+                  name:  'panel_5',
+                  title: 'Panel 5'
+                }
+              ]
+            }
+          );
+        }
+      </script>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+</html>
