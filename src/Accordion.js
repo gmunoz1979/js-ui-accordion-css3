@@ -1,31 +1,26 @@
 Accordion = Class(
   {
+    HH: 30,
+
     renderTo: null,
     width: 'auto',
     height: 'auto',
     cls: '',
     autoRender: false,
     panels: [],
-    HH: 30,
     hp: 0,
+    isFix: false,
 
     initialize: function(config) {
-      
       apply(this, config);
 
-      if (!this.renderTo) {
-        throw new Error('renderTo is undefined!');
-      }
-
-      if (typeof this.renderTo === 'string') {
-        throw new Error('renderTo is not a Element');
-      }
+      if (!this.renderTo) throw new Error('renderTo is undefined!');
+      if (typeof this.renderTo === 'string') throw new Error('renderTo is not a Element');
 
       this.autoRender && this.render();
     },
 
     configAction: function(header, panel, container, div) {
-
       var self = this;
 
       header.onclick = function() {
@@ -38,8 +33,7 @@ Accordion = Class(
           container.style.height  = 0;
           container.style.opacity = 0;
           panel.classList.remove('expanded');
-        }
-        else {
+        } else {
           /**
            * Expandir panel
            */
@@ -48,15 +42,18 @@ Accordion = Class(
           panel.classList.add('expanded');
         }
 
+        if (self.isFix) return;
+
+        var panels   = div.querySelectorAll('.panel-accordion').length;
         var expanded = div.querySelectorAll('.expanded');
 
-        var len = div.querySelectorAll('.panel-accordion').length,
-            le  = expanded.length,
-            lc  = len - le;
+        var i = 0;
+        var j = expanded.length;
 
-        var nh = self.hp + ((self.hp / le) * lc);
+        var lc = panels - j;
+        var nh = self.hp + ((self.hp/j) * lc);
 
-        for (var i=0, len=expanded.length; i<len; i++) {
+        for (; i<j; i++) {
           expanded[i].querySelector('.panel-container').style.height = nh + 'px';
         }
       }
@@ -67,8 +64,8 @@ Accordion = Class(
        * Definimos las dimensiones del accordion
        * según configuración.
        */
-      var width  = this.width  !== 'auto' ? this.width  : this.renderTo.clientWidth,
-          height = this.height !== 'auto' ? this.height : this.renderTo.clientHeight;
+      var width  = this.width  !== 'auto' ? this.width  : this.renderTo.clientWidth;
+      var height = this.height !== 'auto' ? this.height : this.renderTo.clientHeight;
 
       /**
        * Creamos el contenedor del Accordion
@@ -83,12 +80,12 @@ Accordion = Class(
       /**
        * Vamos añadiendo los paneles
        */
-      var sep, 
-          sepCount = 0,
-          len = this.panels.length;
+      var sep;
+      var sepCount = 0;
+      var len = this.panels.length;
 
-      var children   = this.children = {},
-          containers = [];
+      var children   = this.children = {};
+      var containers = [];
 
       var self = this;
 
